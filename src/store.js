@@ -20,8 +20,9 @@ export const store = {
   artworks: {
     1: {
       id: "aw123",
-      artistid: "123",
-      forsale: true,
+      title: "cool painting",
+      artistId: "123",
+      forSale: true,
       price: 1230,
       images: [
         "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/1-3.jpg",
@@ -31,8 +32,9 @@ export const store = {
     },
     2: {
       id: "aw321",
-      artistid: "321",
-      forsale: false,
+      title: "neato print",
+      artistId: "321",
+      forSale: false,
       price: null,
       images: [
         "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_8863.jpg",
