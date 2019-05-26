@@ -12,6 +12,7 @@ class SearchBox extends Component {
         icon="search"
         placeholder="Search..."
         onChange={this.handleSearchChange}
+        value={this.props.term}
       />
     );
   }

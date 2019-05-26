@@ -14,18 +14,14 @@ class App extends Component {
   state = {};
   render() {
     return (
-      <React.Fragment>
-        <main className="container">
-          <Switch>
-            <Route path="/catalogue" component={Catalogue} />
-            <Route path="/work/:id" component={ArtworkPage} />
-            <Redirect path="/work" exact to="/catalogue" />
-            <Route path="/not-found" component={NotFound} />
-            <Redirect from="/" exact to="/catalogue" />
-            <Redirect to="/not-found" />
-          </Switch>
-        </main>
-      </React.Fragment>
+      <Switch>
+        <Route path="/catalogue" component={Catalogue} />
+        <Route path="/work/:id" component={ArtworkPage} />
+        <Redirect path="/work" exact to="/catalogue" />
+        <Route path="/not-found" component={NotFound} />
+        <Redirect from="/" exact to="/catalogue" />
+        <Redirect to="/not-found" />
+      </Switch>
     );
   }
 }

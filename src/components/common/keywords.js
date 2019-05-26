@@ -10,6 +10,6 @@ export const programmes = {
   _JAM: "Jewellery  & Metal",
   _PAINT: "Painting",
   _PRINT: "Print",
-  _PHTOTO: "Photography",
+  _PHOTO: "Photography",
   _SCULPT: "Sculpture"
 };

@@ -1,25 +1,54 @@
 // From 3rd party libraries
 import React, { Component } from "react";
-import { Grid, Header, Container } from "semantic-ui-react";
+import { Grid, Header, Container, Form } from "semantic-ui-react";
 
 // From this application
 import ArtworkCards from "./ArtworkCards";
 import SearchBox from "./common/searchBox";
+import Programmes from "./common/programmes";
 
 class Catalogue extends Component {
-  state = { term: "" };
+  state = { term: "", selectedProgramme: null };
   updateSearchTerm = term => {
-    this.setState({ term: term.toLowerCase() });
+    this.setState({ term: term.toLowerCase(), selectedProgramme: "" });
+  };
+
+  handleProgrammeSelect = programme => {
+    this.setState({ term: "", selectedProgramme: programme.value });
   };
   render() {
     return (
       <React.Fragment>
         <Container style={{ marginTop: "3em" }}>
-          <Grid>
+          <Grid centered>
             <Header as="h1">2020 Fine Art Catalogue</Header>
-            <SearchBox updateSearchTerm={this.updateSearchTerm} />
             <Grid.Row>
-              <ArtworkCards term={this.state.term} />
+              <Grid.Column>
+                <Form>
+                  <Form.Group widths="equal">
+                    <Form.Field>
+                      <Programmes
+                        selectedProgramme={this.state.selectedProgramme}
+                        onProgrammeSelect={this.handleProgrammeSelect}
+                      />
+                    </Form.Field>
+                    <Form.Field>
+                      <SearchBox
+                        term={this.state.term}
+                        updateSearchTerm={this.updateSearchTerm}
+                      />
+                    </Form.Field>
+                  </Form.Group>
+                </Form>
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column>
+                <ArtworkCards
+                  term={this.state.term}
+                  programme={this.state.selectedProgramme}
+                />
+              </Grid.Column>
             </Grid.Row>
           </Grid>
         </Container>

@@ -1,23 +1,35 @@
+// This file renders a more detailed view of the work
+// Guests can reserve a work or find out more about the artist
+// Artist can edit their own works
+
+// From 3rd party libraries
 import React, { Component } from "react";
-import store from "../store";
 import _ from "lodash";
+import { Grid, Header } from "semantic-ui-react";
+
+// From this application
+import store from "../store";
+import { selectWork, selectArtistByWork } from "./selectors";
+import GetRedDotLabel from "./common/getlabel";
 
 class ArtworkPage extends Component {
-  getArtistName = artistid => {
-    return _.find(store.artistsProfiles, ["id", artistid]).name;
-  };
+  state = { selectedWork: [], selectedArtist: [] };
 
-  getArtwork = id => {
-    return _.find(store.artworks, ["id", id]);
-  };
+  componentDidMount() {
+    const selectedWork = selectWork("id", this.props.match.params.id);
+    const selectedArtist = selectArtistByWork("id", this.props.match.params.id);
+    this.setState({ selectedWork, selectedArtist });
+  }
 
-  mapToPageView = work => {
-    return {};
-  };
+  mapToPageView(work) {
+    return (
+      <Grid.Column stretched mobile={16} tablet={8} computer={5} key={work.id}>
+        <Header as="h1">{this.state.selectedWork.title}</Header>
+      </Grid.Column>
+    );
+  }
   render() {
-    const selectedWork = this.getArtwork(this.props.match.params.id); // need to pass the id from the artcards on the search page
-    const artistName = this.getArtistName(selectedWork.artistid);
-    return console.log(artistName);
+    return <Grid centered>{this.mapToPageView(this.state.selectedWork)}</Grid>;
   }
 }
 
