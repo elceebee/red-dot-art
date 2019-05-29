@@ -4,27 +4,44 @@ const store = {
   artistsProfiles: [
     {
       id: 123,
+      image:
+        "https://vignette.wikia.nocookie.net/animationcity/images/3/3c/Stupid_Stickman.png/revision/latest?cb=20131108201253",
       name: "Great artist",
       programme: programmes._PAINT,
-      insta: "",
-      twitter: "@greatartist",
-      web: "www.greatart.com"
+      connect: {
+        youtube: "",
+        instagram: "",
+        twitter: "@greatartist",
+        facebook: "/great.artist",
+        web: "www.greatart.com"
+      }
     },
     {
       id: 321,
+      image: null,
       name: "Good artist",
       programme: programmes._PRINT,
-      insta: "@goodartist",
-      twitter: "",
-      web: "www.goodart.com"
+      connect: {
+        youtube: "",
+        instagram: "@goodartist",
+        twitter: "",
+        facebook: "/good.artist",
+        web: "www.goodart.com"
+      }
     },
     {
       id: 561,
+      image:
+        "https://vignette.wikia.nocookie.net/animationcity/images/3/3c/Stupid_Stickman.png/revision/latest?cb=20131108201253",
       name: "bling bling",
       programme: programmes._JAM,
-      insta: "@blingy",
-      twitter: "@blingy",
-      web: "www.blingyJewellery.com"
+      connect: {
+        youtube: "",
+        instagram: "@blingy",
+        twitter: "@blingy",
+        facebook: "/bling.rings",
+        web: "www.blingyJewellery.com"
+      }
     }
   ],
 
@@ -33,8 +50,10 @@ const store = {
       id: "aw123",
       title: "cool painting",
       artistid: 123,
+      description: "This is the description of my cool painting on canvas.",
       forsale: true,
       price: "£1230.00",
+      sponsor: "",
       images: [
         "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/1-3.jpg",
         "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_9339-e1554321815892.jpg",
@@ -44,12 +63,15 @@ const store = {
     },
     {
       id: "aw321",
-      title: "zneato print",
+      title: "neato Z print",
       artistid: 321,
+      description: "This is the description of my super neat print lino cut.",
       forsale: false,
       price: null,
+      sponsor: "Oil industry",
       images: [
-        "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_8863.jpg"
+        "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_8863.jpg",
+        "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_9101.jpg"
       ],
       reddotstatus: statuses._RESERVED
     },
@@ -57,10 +79,27 @@ const store = {
       id: "aw001",
       title: "bling Jewellery",
       artistid: 561,
+      description: "This is the description of my super blingy gold jewellery.",
       forsale: true,
       price: "£500",
+      sponsor: "Dubius investor",
       images: [
         "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_8920.jpg"
+      ],
+      reddotstatus: statuses._FORSALE
+    },
+    {
+      id: "aw487",
+      title: "Another print print",
+      artistid: 321,
+      description:
+        "This is the description of a second super neat print lino cut.",
+      forsale: true,
+      price: "£510",
+      sponsor: "Oil industry",
+      images: [
+        "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_8863.jpg",
+        "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_9101.jpg"
       ],
       reddotstatus: statuses._FORSALE
     }

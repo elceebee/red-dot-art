@@ -5,7 +5,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 // Compotents from this application
 import Catalogue from "./components/catalogue";
 import NotFound from "./components/notFound";
-import ArtworkPage from "./components/ArtworkPage";
+import Tabs from "./components/tabs";
 
 // CSS modules
 import "./App.css";
@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <Switch>
         <Route path="/catalogue" component={Catalogue} />
-        <Route path="/work/:id" component={ArtworkPage} />
+        <Route path="/work/:id" component={Tabs} />
         <Redirect path="/work" exact to="/catalogue" />
         <Route path="/not-found" component={NotFound} />
         <Redirect from="/" exact to="/catalogue" />

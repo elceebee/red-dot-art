@@ -4,32 +4,56 @@
 
 // From 3rd party libraries
 import React, { Component } from "react";
-import _ from "lodash";
-import { Grid, Header } from "semantic-ui-react";
+import { Grid, Container, Image, Divider, List } from "semantic-ui-react";
 
 // From this application
-import store from "../store";
-import { selectWork, selectArtistByWork } from "./selectors";
 import GetRedDotLabel from "./common/getlabel";
 
 class ArtworkPage extends Component {
-  state = { selectedWork: [], selectedArtist: [] };
-
-  componentDidMount() {
-    const selectedWork = selectWork("id", this.props.match.params.id);
-    const selectedArtist = selectArtistByWork("id", this.props.match.params.id);
-    this.setState({ selectedWork, selectedArtist });
+  getSponsorListItem(work) {
+    if (work.sponsor === "") return null;
+    return (
+      <List.Item key={`${work.sponsor}${work.id}`}>
+        {`With support from ${work.sponsor}`}
+      </List.Item>
+    );
   }
 
-  mapToPageView(work) {
+  getDescriptionItem(work) {
+    if (work.description === "") return null;
+    return (
+      <List.Item key={`${work.description}${work.id}`}>
+        {work.description}
+      </List.Item>
+    );
+  }
+  mapToPageView(work, artist) {
     return (
       <Grid.Column stretched mobile={16} tablet={8} computer={5} key={work.id}>
-        <Header as="h1">{this.state.selectedWork.title}</Header>
+        {GetRedDotLabel(work.reddotstatus)}
+        <Divider horizontal>About this work</Divider>
+        <List>
+          {this.getSponsorListItem(work)}
+          {this.getDescriptionItem(work)}
+        </List>
+        <Image.Group size="medium">
+          {work.images.map(image => {
+            return <Image key={image} src={image} rounded />;
+          })}
+        </Image.Group>
       </Grid.Column>
     );
   }
   render() {
-    return <Grid centered>{this.mapToPageView(this.state.selectedWork)}</Grid>;
+    return (
+      <React.Fragment>
+        <Container style={{ marginTop: "3em" }}>
+          <Grid centered>
+            {this.mapToPageView(this.props.work, this.props.artist)}
+          </Grid>
+        </Container>
+      </React.Fragment>
+    );
   }
 }
 
