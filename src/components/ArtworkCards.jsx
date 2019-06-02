@@ -69,10 +69,7 @@ class ArtworkCards extends Component {
     const worksByTitle = searchWorkTitle(term);
 
     results = _.concat(results, worksByArtist, worksByTitle);
-
     results = _.uniq(results);
-
-    //TODO: Handle no search results
 
     return results;
   };

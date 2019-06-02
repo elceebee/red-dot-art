@@ -1,5 +1,4 @@
 export const statuses = {
-  _SOLD: "Sold",
   _RESERVED: "Reserved",
   _FORSALE: "For sale",
   _NOTFORSALE: "Not for sale"

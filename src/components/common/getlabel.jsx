@@ -1,34 +1,41 @@
 import React from "react";
+import { toast } from "react-toastify";
 import { statuses } from "./keywords";
-import { Icon, Label } from "semantic-ui-react";
+import { Icon, Button } from "semantic-ui-react";
+import _ from "lodash";
 
-const { _SOLD, _RESERVED, _FORSALE } = statuses;
+const { _RESERVED, _FORSALE, _NOTFORSALE } = statuses;
 
-const GetRedDotLabel = status => {
+const GetRedDotLabel = (status, handleClick) => {
   const getLabelMessage = status => {
     switch (true) {
-      case status === _SOLD:
-        return "This work has been sold";
       case status === _RESERVED:
-        return "This work has been reserved. Put your name on a waiting list.";
+        return "Artwork has been reserved";
       case status === _FORSALE:
-        return "Purchase this work.";
+        return "Reserve this work";
+      case status === _NOTFORSALE:
+        return "Artwork not for sale";
       default:
         return "";
     }
   };
   const attributes = {
-    color: status === (_SOLD || _RESERVED) ? "red" : "grey",
-    name: status === (_SOLD || _FORSALE) ? "circle" : "circle outline",
+    color: _.includes([_RESERVED, _NOTFORSALE], status) ? "red" : "grey",
+    name: _.includes([_RESERVED, _FORSALE], status)
+      ? "circle"
+      : "circle outline",
     message: getLabelMessage(status)
   };
 
   return (
-    <Label>
+    <Button icon labelPosition="left" onClick={handleClick} type="button">
       <Icon color={attributes.color} name={attributes.name} />{" "}
       {attributes.message}.
-    </Label>
+    </Button>
   );
+  // } else {
+  //   return null;
+  // }
 };
 
 export default GetRedDotLabel;

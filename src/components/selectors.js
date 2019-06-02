@@ -50,6 +50,13 @@ export function searchWorkTitle(term) {
   });
 }
 
+// Returns the VIP donor object
+export function selectDonor(donorid) {
+  return _.filter(store.VIPs, vip => {
+    return _.includes(vip.donorid, donorid);
+  });
+}
+
 export default {
   selectArtist,
   selectArtistName,

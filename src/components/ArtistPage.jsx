@@ -38,7 +38,11 @@ class ArtistPage extends Component {
         <Divider horizontal>Connect with this artist</Divider>
         <List>
           {_.map(artist.connect, (key, value) => {
-            return <List.Item key={value}>{`${value} : ${key}`}</List.Item>;
+            return (
+              <List.Item key={`${key}_${value}`}>
+                <a href={key}>{`${value} : ${key}`}</a>
+              </List.Item>
+            );
           })}
         </List>
       </React.Fragment>

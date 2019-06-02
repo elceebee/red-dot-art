@@ -59,7 +59,7 @@ const store = {
         "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_9339-e1554321815892.jpg",
         "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_9101.jpg"
       ],
-      reddotstatus: statuses._SOLD
+      reddotstatus: statuses._RESERVED
     },
     {
       id: "aw321",
@@ -73,7 +73,7 @@ const store = {
         "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_8863.jpg",
         "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_9101.jpg"
       ],
-      reddotstatus: statuses._RESERVED
+      reddotstatus: statuses._NOTFORSALE
     },
     {
       id: "aw001",
@@ -129,6 +129,21 @@ const store = {
       value: programmes._SCULPT
     }
   ],
+  VIPs: [
+    {
+      donorid: "RE495618",
+      name: "Chris Lloyd",
+      image:
+        "https://intl.startrek.com/sites/default/files/styles/992x473/public/images/2019-01/chrislloyd2.jpg?itok=ONpZXmqK"
+    },
+    {
+      donorid: "RE867181",
+      name: "Famous Designer",
+      image:
+        "https://thumbs-prod.si-cdn.com/p2qi4avByZrRy5TmuTL7MRM-4ls=/800x600/filters:no_upscale()/https://public-media.si-cdn.com/filer/89/40/89402b5e-251f-453b-ad19-f41d810f9e7d/jony-ive-800x600px-main-photo-web-page-300-dpi-copy-wr.jpg"
+    }
+  ],
+
   currentUser: "elbee@domain.ac.uk"
 };
 

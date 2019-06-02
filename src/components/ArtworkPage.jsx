@@ -1,15 +1,36 @@
 // This file renders a more detailed view of the work
-// Guests can reserve a work or find out more about the artist
-// Artist can edit their own works
+// From here, guides can reserve a work for a VIP
+// Future development: Artist can edit their own works
 
 // From 3rd party libraries
 import React, { Component } from "react";
-import { Grid, Container, Image, Divider, List } from "semantic-ui-react";
+import { withRouter } from "react-router-dom";
+import {
+  Grid,
+  Container,
+  Image,
+  Divider,
+  List,
+  Message,
+  Form,
+  Select
+} from "semantic-ui-react";
+import _ from "lodash";
 
 // From this application
 import GetRedDotLabel from "./common/getlabel";
+import { statuses } from "./common/keywords";
+import store from "../store";
+
+const { _RESERVED, _FORSALE, _NOTFORSALE } = statuses;
 
 class ArtworkPage extends Component {
+  state = {
+    hideLabel: true,
+    hideForm: true,
+    donorId: ""
+  };
+
   getSponsorListItem(work) {
     if (work.sponsor === "") return null;
     return (
@@ -19,6 +40,76 @@ class ArtworkPage extends Component {
     );
   }
 
+  handleClick() {
+    if (_.includes([_RESERVED, _NOTFORSALE], this.props.work.reddotstatus)) {
+      this.setState({ hideLabel: false });
+    }
+    if (_.includes([_FORSALE], this.props.work.reddotstatus)) {
+      this.setState({ hideForm: false });
+    }
+  }
+
+  handleLabelDismiss = () => {
+    this.setState({ hideLabel: true });
+  };
+
+  handleFormDismiss = () => {
+    this.setState({ hideForm: true });
+  };
+
+  getGuestList() {
+    return store.VIPs.map(vip => {
+      return {
+        key: vip.donorid,
+        text: vip.name,
+        value: vip.donorid,
+        image: { avatar: true, src: vip.image }
+      };
+    });
+  }
+
+  handleChange = (e, { name, value }) => this.setState({ [name]: value });
+
+  handleNext = () => {
+    this.props.history.push("/confirmation", {
+      workId: this.props.work.id,
+      donorId: this.state.donorId
+    });
+  };
+
+  getForm = () => {
+    return (
+      <React.Fragment>
+        <Message
+          onDismiss={this.handleFormDismiss}
+          attached
+          header="Reservation Form"
+          hidden={this.state.hideForm}
+        />
+        <Form className="attached fluid segment" hidden={this.state.hideForm}>
+          <Form.Group widths="equal">
+            <Form.Input
+              name="donorId"
+              control={Select}
+              options={this.getGuestList()}
+              search
+              fluid
+              placeholder="Select Guest"
+              onChange={this.handleChange}
+            />
+            <Form.Field>
+              <Form.Button
+                type="button"
+                content="Next"
+                onClick={() => this.handleNext()}
+              />
+            </Form.Field>
+          </Form.Group>
+        </Form>
+      </React.Fragment>
+    );
+  };
+
   getDescriptionItem(work) {
     if (work.description === "") return null;
     return (
@@ -27,10 +118,19 @@ class ArtworkPage extends Component {
       </List.Item>
     );
   }
-  mapToPageView(work, artist) {
+
+  mapToPageView(work) {
     return (
       <Grid.Column stretched mobile={16} tablet={8} computer={5} key={work.id}>
-        {GetRedDotLabel(work.reddotstatus)}
+        {GetRedDotLabel(work.reddotstatus, () => this.handleClick())}
+        <Message
+          error
+          hidden={this.state.hideLabel}
+          header="This work cannot be reserved"
+          onDismiss={this.handleLabelDismiss}
+        />
+        {this.getForm()}
+
         <Divider horizontal>About this work</Divider>
         <List>
           {this.getSponsorListItem(work)}
@@ -48,13 +148,11 @@ class ArtworkPage extends Component {
     return (
       <React.Fragment>
         <Container style={{ marginTop: "3em" }}>
-          <Grid centered>
-            {this.mapToPageView(this.props.work, this.props.artist)}
-          </Grid>
+          <Grid centered>{this.mapToPageView(this.props.work)}</Grid>
         </Container>
       </React.Fragment>
     );
   }
 }
 
-export default ArtworkPage;
+export default withRouter(ArtworkPage);
