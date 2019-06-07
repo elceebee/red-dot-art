@@ -7,7 +7,8 @@ import {
   Header,
   Image,
   Card,
-  Button
+  Button,
+  Confirm
 } from "semantic-ui-react";
 
 class Reserve extends Component {
@@ -17,9 +18,12 @@ class Reserve extends Component {
     this.props.history.push(`/work/${this.state.workId}`);
   }
 
-  handleConfirm() {
-    console.log("Confirm");
-  }
+  show = () => this.setState({ open: true });
+
+  handleConfirm = () => {
+    // update database
+    this.props.history.push("/catalogue");
+  };
 
   mapToPageView(work, artist, donor) {
     return (
@@ -28,21 +32,24 @@ class Reserve extends Component {
         <Card>
           <Image src={donor.image} wrapped ui={false} />
           <Card.Header>{donor.name}</Card.Header>
-          <Card.Description>VIP Donor</Card.Description>
         </Card>
         <Card>
           <Image src={work.images[0]} wrapped ui={false} />
-          <Card.Header>{work.title}</Card.Header>
-          <Card.Description>Work</Card.Description>
+          <Card.Header>{`${work.title} by ${artist.name}`}</Card.Header>
         </Card>
         <Button.Group size="large">
           <Button onClick={() => this.handleEdit()} type="button">
             Edit
           </Button>
           <Button.Or />
-          <Button onClick={() => this.handleConfirm()} type="button" positive>
+          <Button onClick={this.show} type="button" positive>
             Confirm reservation
           </Button>
+          <Confirm
+            open={this.state.open}
+            onConfirm={this.handleConfirm}
+            content={`${donor.name} will be invoiced for ${work.price} `}
+          />
         </Button.Group>
       </React.Fragment>
     );
