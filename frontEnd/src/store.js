@@ -8,26 +8,24 @@ const store = {
         "https://vignette.wikia.nocookie.net/animationcity/images/3/3c/Stupid_Stickman.png/revision/latest?cb=20131108201253",
       name: "Great artist",
       programme: programmes._PAINT,
-      connect: {
+
         youtube: "",
         instagram: "",
         twitter: "@greatartist",
         facebook: "/great.artist",
         web: "www.greatart.com"
-      }
+
     },
     {
       id: 321,
       image: null,
       name: "Good artist",
       programme: programmes._PRINT,
-      connect: {
-        youtube: "",
-        instagram: "@goodartist",
-        twitter: "",
-        facebook: "/good.artist",
-        web: "www.goodart.com"
-      }
+      youtube: "",
+      instagram: "@goodartist",
+      twitter: "",
+      facebook: "/good.artist",
+      web: "www.goodart.com"
     },
     {
       id: 561,
@@ -35,13 +33,11 @@ const store = {
         "https://vignette.wikia.nocookie.net/animationcity/images/3/3c/Stupid_Stickman.png/revision/latest?cb=20131108201253",
       name: "bling bling",
       programme: programmes._JAM,
-      connect: {
         youtube: "",
         instagram: "@blingy",
         twitter: "@blingy",
         facebook: "/bling.rings",
         web: "www.blingyJewellery.com"
-      }
     }
   ],
 
@@ -54,11 +50,8 @@ const store = {
       forsale: true,
       price: "£1230.00",
       sponsor: "",
-      images: [
+      image:
         "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/1-3.jpg",
-        "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_9339-e1554321815892.jpg",
-        "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_9101.jpg"
-      ],
       reddotstatus: statuses._RESERVED
     },
     {
@@ -69,10 +62,8 @@ const store = {
       forsale: false,
       price: null,
       sponsor: "Oil industry",
-      images: [
+      image:
         "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_8863.jpg",
-        "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_9101.jpg"
-      ],
       reddotstatus: statuses._NOTFORSALE
     },
     {
@@ -83,9 +74,8 @@ const store = {
       forsale: true,
       price: "£500",
       sponsor: "Dubius investor",
-      images: [
-        "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_8920.jpg"
-      ],
+      image: 
+        "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_8920.jpg",
       reddotstatus: statuses._FORSALE
     },
     {
@@ -97,10 +87,8 @@ const store = {
       forsale: true,
       price: "£510",
       sponsor: "Oil industry",
-      images: [
+      image: 
         "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_8863.jpg",
-        "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_9101.jpg"
-      ],
       reddotstatus: statuses._FORSALE
     }
   ],
