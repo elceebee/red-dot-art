@@ -14,7 +14,11 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 class App extends Component {
-  state = {};
+  state = { artists: [], donors: [], works: []};
+
+  ComponentDidMount() {
+    // TODO: call the backend to retreive data
+  }
   render() {
     return (
       <React.Fragment>

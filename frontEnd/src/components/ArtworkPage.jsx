@@ -1,5 +1,6 @@
-// This file renders a more detailed view of the work
+// This file renders a more detailed view of the work, rendered in Tab.
 // From here, guides can reserve a work for a VIP
+// Inherits work and artist as props from Tabs
 // Future development: Artist can edit their own works
 
 // From 3rd party libraries
@@ -41,10 +42,15 @@ class ArtworkPage extends Component {
   }
 
   handleClick() {
-    if (_.includes([_RESERVED, _NOTFORSALE], this.props.work.reddotstatus)) {
+
+    // Displays message if the work is unavailable; 
+    // Displays form if the work can be reserved.
+    const {work} = this.props; 
+
+    if (_.includes([_RESERVED, _NOTFORSALE], work.reddotstatus)) {
       this.setState({ hideLabel: false });
     }
-    if (_.includes([_FORSALE], this.props.work.reddotstatus)) {
+    if (_.includes([_FORSALE], work.reddotstatus)) {
       this.setState({ hideForm: false });
     }
   }
@@ -57,7 +63,7 @@ class ArtworkPage extends Component {
     this.setState({ hideForm: true });
   };
 
-  getGuestList() {
+  getVipsList() {
     return store.VIPs.map(vip => {
       return {
         key: vip.donorid,
@@ -71,6 +77,8 @@ class ArtworkPage extends Component {
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
   handleNext = () => {
+    // Handles Form submission by passing work and donor 
+    // As props to confirmation
     this.props.history.push("/confirmation", {
       workId: this.props.work.id,
       donorId: this.state.donorId
@@ -91,7 +99,7 @@ class ArtworkPage extends Component {
             <Form.Input
               name="donorId"
               control={Select}
-              options={this.getGuestList()}
+              options={this.getVipsList()}
               search
               fluid
               placeholder="Select Guest"

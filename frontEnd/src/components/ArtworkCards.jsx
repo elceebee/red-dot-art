@@ -1,10 +1,14 @@
-// From 3rd party libraries
+// This component renders cards for works to appear in the catalogue. 
+// Handles searching and filtering by programmed are handled here.
+// Inherits search and filter terms as props from Catalogue. 
+
+// Imports From 3rd party libraries
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import _ from "lodash";
 import { Card, Grid, Image, Message } from "semantic-ui-react";
 
-// From this application
+// imports from this application
 import store from "../store";
 import {
   selectArtistName,
@@ -18,10 +22,13 @@ class ArtworkCards extends Component {
   state = { results: [] };
 
   componentDidMount() {
+    //TODO: works needs to be passed as props from app. 
+    //TODO: open sockets for updating the reddotstatus
     this.setState({ results: store.artworks });
   }
 
   componentDidUpdate(prevProps) {
+    // Updates results in state based on searching or filtering
     const { term, programme } = this.props;
     if (prevProps.term === term && prevProps.programme === programme) return;
 
@@ -46,6 +53,8 @@ class ArtworkCards extends Component {
   }
 
   getWorksBySearch = term => {
+
+    // Handles searching, passes results to componentDidUpdate
     let results = [];
 
     // Filters the artists profiles to those where the name contains search term
@@ -75,6 +84,7 @@ class ArtworkCards extends Component {
   };
 
   mapToCardView(work) {
+    // Creates view for each piece of work in results state.
     return (
       <Grid.Column stretched mobile={16} tablet={8} computer={5} key={work.id}>
         <Card fluid as={Link} to={`work/${work.id}`}>
@@ -95,7 +105,9 @@ class ArtworkCards extends Component {
   }
 
   render() {
-    if (_.isEmpty(this.state.results)) {
+
+    const {results} = this.state;
+    if (_.isEmpty(results)) {
       return (
         <Message negative>
           <Message.Header>
@@ -107,7 +119,7 @@ class ArtworkCards extends Component {
 
     return (
       <Grid centered>
-        {this.state.results.map(work => {
+        {results.map(work => {
           return this.mapToCardView(work);
         })}
       </Grid>
