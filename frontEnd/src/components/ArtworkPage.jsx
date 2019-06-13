@@ -42,10 +42,9 @@ class ArtworkPage extends Component {
   }
 
   handleClick() {
-
-    // Displays message if the work is unavailable; 
+    // Displays message if the work is unavailable;
     // Displays form if the work can be reserved.
-    const {work} = this.props; 
+    const { work } = this.props;
 
     if (_.includes([_RESERVED, _NOTFORSALE], work.reddotstatus)) {
       this.setState({ hideLabel: false });
@@ -77,8 +76,9 @@ class ArtworkPage extends Component {
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
   handleNext = () => {
-    // Handles Form submission by passing work and donor 
+    // Handles Form submission by passing work and donor
     // As props to confirmation
+
     this.props.history.push("/confirmation", {
       workId: this.props.work.id,
       donorId: this.state.donorId
@@ -144,11 +144,7 @@ class ArtworkPage extends Component {
           {this.getSponsorListItem(work)}
           {this.getDescriptionItem(work)}
         </List>
-        <Image.Group size="medium">
-          {work.images.map(image => {
-            return <Image key={image} src={image} rounded />;
-          })}
-        </Image.Group>
+        <Image size="medium" key={work.image} src={work.image} rounded />
       </Grid.Column>
     );
   }

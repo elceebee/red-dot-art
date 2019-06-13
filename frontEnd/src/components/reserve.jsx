@@ -37,7 +37,7 @@ class Reserve extends Component {
           <Card.Header>{donor.name}</Card.Header>
         </Card>
         <Card>
-          <Image src={work.images[0]} wrapped ui={false} />
+          <Image src={work.image} wrapped ui={false} />
           <Card.Header>{`${work.title} by ${artist.name}`}</Card.Header>
         </Card>
         <Button.Group size="large">

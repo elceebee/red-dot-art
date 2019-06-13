@@ -87,7 +87,7 @@ class ArtworkCards extends Component {
     return (
       <Grid.Column stretched mobile={16} tablet={8} computer={5} key={work.id}>
         <Card fluid as={Link} to={`work/${work.id}`}>
-          <Image src={work.images[0]} wrapped ui={false} />
+          <Image src={work.image} wrapped ui={false} />
           <Card.Content>
             <Card.Header>{work.title}</Card.Header>
             <Card.Meta>
