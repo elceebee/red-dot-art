@@ -1,3 +1,5 @@
+// Functions for selecting artists and works.
+
 import store from "../store";
 import _ from "lodash";
 

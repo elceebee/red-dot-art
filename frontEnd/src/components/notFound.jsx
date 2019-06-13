@@ -1,3 +1,4 @@
+// Page rendered if invalid address.
 import React from "react";
 
 const NotFound = () => {

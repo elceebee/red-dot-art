@@ -43,26 +43,26 @@ def profileData():
     return jsonify(artistsProfiles)
 
 # Retrieves donor data
-@app.route("/donors", methods=["GET"])
-def donorData():
+@app.route("/vipdonors", methods=["GET"])
+def vipDonors():
     # Empty array for donor data
-    donors = []
+    vipDonors = []
 
     # Request donor profiles from database, stored in Cursor object
-    donorsCursor = db.donors.find()
+    vipDonorsCursor = db.vipDonors.find()
     
     # Adds each donor to the donors array
-    for donor in donorsCursor:
-        addDonor = {"_id": str(donor["_id"]), "name": donor["name"], "image": donor["image"]}
-        donors.append(addDonor)
+    for donor in vipDonorsCursor:
+        addDonor = {"_id": str(vipDonors["_id"]), "name": vipDonors["name"], "image": donor["image"]}
+        vipDonors.append(addDonor)
     
     # Returns a jsonified object of artists profiles
-    return jsonify(donors)
+    return jsonify(vipDonors)
 
 
 # Retrieves art work data
 @app.route("/artworks", methods=["GET"])
-def artworkData():
+def artworks():
     # Empty array for artwork data
     artworks = []
 
@@ -70,8 +70,8 @@ def artworkData():
     artworksCursor = db.artworks.find()
     
     # Adds each donor to the donors array
-    for work in artworksCursor:
-        addWork = {"_id": str(work["_id"]), "image": work["image"], "title": work["title"], "artistid": work["artistid"], "description": work["description"], "buyerid": work["buyerid"], "price": float(str(work["price"])), "sponsor": work["sponsor"], "reddotstatus": work["reddotstatus"]}
+    for artworks in artworksCursor:
+        addWork = {"_id": str(artworks["_id"]), "image": artworks["image"], "title": work["title"], "artistid": work["artistid"], "description": work["description"], "buyerid": work["buyerid"], "price": float(str(work["price"])), "sponsor": work["sponsor"], "reddotstatus": work["reddotstatus"]}
         artworks.append(addWork)
     
     # Returns a jsonified object of artists profiles

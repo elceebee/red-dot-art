@@ -1,3 +1,5 @@
+// Renders the ArtworkPage and ArtistPage as tabs.
+
 // From 3rd party libraries
 import React, { Component } from "react";
 import { Tab } from "semantic-ui-react";
@@ -19,29 +21,20 @@ class Tabs extends Component {
     });
   }
   render() {
+    const { selectedWork, selectedArtist } = this.state;
     const panes = [
       {
-        menuItem: this.state.selectedWork.title,
+        menuItem: selectedWork.title,
         pane: {
-          key: this.state.selectedWork.title,
-          content: (
-            <ArtworkPage
-              work={this.state.selectedWork}
-              artist={this.state.selectedArtist}
-            />
-          )
+          key: selectedWork.title,
+          content: <ArtworkPage work={selectedWork} artist={selectedArtist} />
         }
       },
       {
-        menuItem: this.state.selectedArtist.name,
+        menuItem: selectedArtist.name,
         pane: {
-          key: this.state.selectedArtist.name,
-          content: (
-            <ArtistPage
-              work={this.state.selectedWork}
-              artist={this.state.selectedArtist}
-            />
-          )
+          key: selectedArtist.name,
+          content: <ArtistPage work={selectedWork} artist={selectedArtist} />
         }
       }
     ];

@@ -1,3 +1,5 @@
+// Menu allowing users to go back to the catalogue
+
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Menu, Container } from "semantic-ui-react";

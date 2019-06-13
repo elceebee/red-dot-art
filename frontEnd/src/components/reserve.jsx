@@ -1,3 +1,5 @@
+// Renders page for guests to confirm reservation details (artwork and donor)
+
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { selectWork, selectDonor, selectArtistByWork } from "./selectors";
@@ -14,6 +16,7 @@ import {
 class Reserve extends Component {
   state = this.props.location.state;
 
+  // Sends user back to reservation form to correct selection
   handleEdit() {
     this.props.history.push(`/work/${this.state.workId}`);
   }
@@ -56,11 +59,12 @@ class Reserve extends Component {
   }
 
   render() {
-    let work = selectWork("id", this.state.workId);
+    const { workId, donorId } = this.state;
+    let work = selectWork("id", workId);
     work = work[0];
-    let artist = selectArtistByWork("id", this.state.workId);
+    let artist = selectArtistByWork("id", workId);
     artist = artist[0];
-    let donor = selectDonor(this.state.donorId);
+    let donor = selectDonor(donorId);
     donor = donor[0];
 
     return (

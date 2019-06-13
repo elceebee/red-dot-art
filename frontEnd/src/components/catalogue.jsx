@@ -1,3 +1,6 @@
+// Renders the catalogue view, the default page.
+// Passes selected programme and search terms as props to handle filtering
+
 // From 3rd party libraries
 import React, { Component } from "react";
 import { Grid, Header, Container, Form } from "semantic-ui-react";

@@ -1,14 +1,14 @@
-// This component renders cards for works to appear in the catalogue. 
+// This component renders cards for works to appear in the catalogue.
 // Handles searching and filtering by programmed are handled here.
-// Inherits search and filter terms as props from Catalogue. 
+// Inherits search and filter terms as props from Catalogue.
 
-// Imports From 3rd party libraries
+// Imports From third party libraries
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import _ from "lodash";
 import { Card, Grid, Image, Message } from "semantic-ui-react";
 
-// imports from this application
+// Imports from this application
 import store from "../store";
 import {
   selectArtistName,
@@ -22,7 +22,7 @@ class ArtworkCards extends Component {
   state = { results: [] };
 
   componentDidMount() {
-    //TODO: works needs to be passed as props from app. 
+    //TODO: works needs to be passed as props from app.
     //TODO: open sockets for updating the reddotstatus
     this.setState({ results: store.artworks });
   }
@@ -53,7 +53,6 @@ class ArtworkCards extends Component {
   }
 
   getWorksBySearch = term => {
-
     // Handles searching, passes results to componentDidUpdate
     let results = [];
 
@@ -105,8 +104,7 @@ class ArtworkCards extends Component {
   }
 
   render() {
-
-    const {results} = this.state;
+    const { results } = this.state;
     if (_.isEmpty(results)) {
       return (
         <Message negative>

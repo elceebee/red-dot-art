@@ -9,12 +9,11 @@ const store = {
       name: "Great artist",
       programme: programmes._PAINT,
 
-        youtube: "",
-        instagram: "",
-        twitter: "@greatartist",
-        facebook: "/great.artist",
-        web: "www.greatart.com"
-
+      youtube: "",
+      instagram: "",
+      twitter: "@greatartist",
+      facebook: "/great.artist",
+      web: "www.greatart.com"
     },
     {
       id: 321,
@@ -33,11 +32,11 @@ const store = {
         "https://vignette.wikia.nocookie.net/animationcity/images/3/3c/Stupid_Stickman.png/revision/latest?cb=20131108201253",
       name: "bling bling",
       programme: programmes._JAM,
-        youtube: "",
-        instagram: "@blingy",
-        twitter: "@blingy",
-        facebook: "/bling.rings",
-        web: "www.blingyJewellery.com"
+      youtube: "",
+      instagram: "@blingy",
+      twitter: "@blingy",
+      facebook: "/bling.rings",
+      web: "www.blingyJewellery.com"
     }
   ],
 
@@ -74,7 +73,7 @@ const store = {
       forsale: true,
       price: "£500",
       sponsor: "Dubius investor",
-      image: 
+      image:
         "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_8920.jpg",
       reddotstatus: statuses._FORSALE
     },
@@ -87,7 +86,7 @@ const store = {
       forsale: true,
       price: "£510",
       sponsor: "Oil industry",
-      image: 
+      image:
         "http://www.hollywoodprimaryschool.co.uk/wp-content/uploads/IMG_8863.jpg",
       reddotstatus: statuses._FORSALE
     }
@@ -117,7 +116,7 @@ const store = {
       value: programmes._SCULPT
     }
   ],
-  VIPs: [
+  vipDonors: [
     {
       donorid: "RE495618",
       name: "Chris Lloyd",
