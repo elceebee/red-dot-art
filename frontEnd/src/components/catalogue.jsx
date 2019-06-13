@@ -48,6 +48,7 @@ class Catalogue extends Component {
             <Grid.Row>
               <Grid.Column>
                 <ArtworkCards
+                  artWorks={this.props.artWorks}
                   term={this.state.term}
                   programme={this.state.selectedProgramme}
                 />

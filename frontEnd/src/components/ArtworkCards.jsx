@@ -9,7 +9,7 @@ import _ from "lodash";
 import { Card, Grid, Image, Message } from "semantic-ui-react";
 
 // Imports from this application
-import store from "../store";
+// import store from "../store";
 import {
   selectArtistName,
   selectWorkByArtist,
@@ -24,19 +24,19 @@ class ArtworkCards extends Component {
   componentDidMount() {
     //TODO: works needs to be passed as props from app.
     //TODO: open sockets for updating the reddotstatus
-    this.setState({ results: store.artworks });
+    this.setState({ results: this.props.artworks });
   }
 
   componentDidUpdate(prevProps) {
     // Updates results in state based on searching or filtering
-    const { term, programme } = this.props;
+    const { term, programme, artworks } = this.props;
     if (prevProps.term === term && prevProps.programme === programme) return;
 
     // A change in search term
     if (prevProps.term !== term) {
       const searchTerm = term.toLowerCase();
       let results =
-        searchTerm === "" ? store.artworks : this.getWorksBySearch(searchTerm);
+        searchTerm === "" ? artworks : this.getWorksBySearch(searchTerm);
 
       this.setState({ results });
     }
@@ -45,7 +45,7 @@ class ArtworkCards extends Component {
     if (prevProps.programme !== programme) {
       let results =
         programme === ""
-          ? store.artworks
+          ? artworks
           : selectWorkByArtist("programme", programme);
 
       this.setState({ results });

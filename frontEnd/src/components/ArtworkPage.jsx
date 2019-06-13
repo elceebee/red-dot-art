@@ -21,7 +21,7 @@ import _ from "lodash";
 // From this application
 import GetRedDotLabel from "./common/getlabel";
 import { statuses } from "./common/keywords";
-import store from "../store";
+// import store from "../store";
 
 const { _RESERVED, _FORSALE, _NOTFORSALE } = statuses;
 
@@ -63,7 +63,7 @@ class ArtworkPage extends Component {
   };
 
   getVipsList() {
-    return store.VIPs.map(vip => {
+    return this.props.vipDonors.map(vip => {
       return {
         key: vip.donorid,
         text: vip.name,
