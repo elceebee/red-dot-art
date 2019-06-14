@@ -3,11 +3,11 @@
 import React, { Component } from "react";
 import { Dropdown } from "semantic-ui-react";
 
-import programmes from "./programmeList";
+import { programmesList } from "./keywords";
 
 class Programmes extends Component {
   render() {
-    const options = programmes;
+    const options = programmesList;
     const { onProgrammeSelect } = this.props;
     return (
       <Dropdown

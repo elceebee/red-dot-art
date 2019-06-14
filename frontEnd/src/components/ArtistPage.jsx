@@ -42,8 +42,8 @@ class ArtistPage extends Component {
       <React.Fragment>
         <Divider horizontal>Connect with this artist</Divider>
         <List>
-          {_.map(artist.connect, (key, value) => {
-            if (key !== "_id" || key !== "name" || key !== programme) {
+          {_.map(artist, (key, value) => {
+            if (key !== "_id" || key !== "name" || key !== "programme") {
               return (
                 <List.Item key={`${key}_${value}`}>
                   <a href={key}>{`${value} : ${key}`}</a>
