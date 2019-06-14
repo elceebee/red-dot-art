@@ -19,12 +19,18 @@ import {
 import GetRedDotLabel from "./common/getlabel";
 
 class ArtworkCards extends Component {
-  state = { results: [] };
+  state = { results: [], store: [] };
 
   componentDidMount() {
     //TODO: works needs to be passed as props from app.
     //TODO: open sockets for updating the reddotstatus
-    this.setState({ results: this.props.artworks });
+    this.setState({ results: this.props.artWorks });
+    const artWorks = this.props.artWorks;
+    const artistsProfiles = this.props.artistsProfiles;
+    const vipDonors = this.props.vipDonors;
+
+    const store = [artWorks, artistsProfiles, vipDonors];
+    this.setState({ store });
   }
 
   componentDidUpdate(prevProps) {
