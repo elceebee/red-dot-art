@@ -1,3 +1,27 @@
+# What this app does and why
+
+Inforomation
+
+## Tools and libraries used
+
+socketio
+lodash
+semantic ui
+
+## How to see it work
+
+TODO: sample data file, which you can set up locally with mongodb
+
+## Future development
+
+To make this work better:
+
+- Export .csv file for creating invoices to be entered into billing software and sent to donors
+- Ability to edit works and profiles form within the application
+- authentication and permission for different types of users (tour guides, admins donors, artists)
+
+## Do I need anything below this?!?1
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
