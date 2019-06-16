@@ -9,7 +9,7 @@ import _ from "lodash";
 import { Card, Grid, Image, Message } from "semantic-ui-react";
 
 // Imports from this application
-// import store from "../store";
+import { withStoreContext } from "../withStoreContext";
 import {
   selectArtistName,
   selectWorkByArtist,
@@ -19,30 +19,33 @@ import {
 import GetRedDotLabel from "./common/getlabel";
 
 class ArtworkCards extends Component {
-  state = { results: [], store: [] };
+  state = { results: [] };
 
   componentDidMount() {
-    //TODO: works needs to be passed as props from app.
-    //TODO: open sockets for updating the reddotstatus
-    this.setState({ results: this.props.artWorks });
-    const artWorks = this.props.artWorks;
-    const artistsProfiles = this.props.artistsProfiles;
-    const vipDonors = this.props.vipDonors;
-
-    const store = [artWorks, artistsProfiles, vipDonors];
-    this.setState({ store });
+    if (this.props.context.artWorks) {
+      const results = this.props.context.artWorks;
+      this.setState({ results });
+    }
   }
 
   componentDidUpdate(prevProps) {
+    const results = this.props.context.artWorks;
+
+    // Initially render all artworks in the catalogue
+    if (this.props.context.artWorks !== prevProps.context.artWorks) {
+      this.setState({ results });
+    }
+
     // Updates results in state based on searching or filtering
-    const { term, programme, artworks } = this.props;
+    const { term, programme } = this.props;
+    const { artWorks } = this.props.context;
     if (prevProps.term === term && prevProps.programme === programme) return;
 
     // A change in search term
     if (prevProps.term !== term) {
       const searchTerm = term.toLowerCase();
       let results =
-        searchTerm === "" ? artworks : this.getWorksBySearch(searchTerm);
+        searchTerm === "" ? artWorks : this.getWorksBySearch(searchTerm);
 
       this.setState({ results });
     }
@@ -51,8 +54,8 @@ class ArtworkCards extends Component {
     if (prevProps.programme !== programme) {
       let results =
         programme === ""
-          ? artworks
-          : selectWorkByArtist("programme", programme);
+          ? artWorks
+          : selectWorkByArtist("programme", programme, this.props.context);
 
       this.setState({ results });
     }
@@ -63,7 +66,7 @@ class ArtworkCards extends Component {
     let results = [];
 
     // Filters the artists profiles to those where the name contains search term
-    const artistMatch = searchArtistbyName(term);
+    const artistMatch = searchArtistbyName(term, this.props.context);
 
     // Reduces that array of objects to a array of IDs
     const artistIds = artistMatch.map(artist => {
@@ -73,14 +76,17 @@ class ArtworkCards extends Component {
     // Filters the list of artworks by those with the artistid
     const worksByArtist = _.reduce(
       artistIds,
-      function(worksByArtist, id) {
-        return _.concat(worksByArtist, selectWorkByArtist("id", id));
+      (worksByArtist, id) => {
+        return _.concat(
+          worksByArtist,
+          selectWorkByArtist("id", id, this.props.context)
+        );
       },
       []
     );
 
     // Get artwork whose titles contain the term
-    const worksByTitle = searchWorkTitle(term);
+    const worksByTitle = searchWorkTitle(term, this.props.context);
 
     results = _.concat(results, worksByArtist, worksByTitle);
     results = _.uniq(results);
@@ -97,7 +103,7 @@ class ArtworkCards extends Component {
           <Card.Content>
             <Card.Header>{work.title}</Card.Header>
             <Card.Meta>
-              <span>{selectArtistName(work.artistid)}</span>
+              <span>{selectArtistName(work.artistid, this.props.context)}</span>
             </Card.Meta>
             <Card.Description>
               {work.forsale ? work.price : "not for sale"}
@@ -131,4 +137,4 @@ class ArtworkCards extends Component {
   }
 }
 
-export default ArtworkCards;
+export default withStoreContext(ArtworkCards);

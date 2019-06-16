@@ -1,7 +1,6 @@
-// This file renders a more detailed view of the work, rendered in Tab.
-// From here, guides can reserve a work for a VIP
+// This file renders a more detailed view of the work in a Tab. The other Tab is ArtistPage Component.
 // Inherits work and artist as props from Tabs
-// Future development: Artist can edit their own works
+// From here, can reserve work.
 
 // From 3rd party libraries
 import React, { Component } from "react";
@@ -19,9 +18,9 @@ import {
 import _ from "lodash";
 
 // From this application
+import { withStoreContext } from "../withStoreContext";
 import GetRedDotLabel from "./common/getlabel";
 import { statuses } from "./common/keywords";
-// import store from "../store";
 
 const { _RESERVED, _FORSALE, _NOTFORSALE } = statuses;
 
@@ -63,11 +62,11 @@ class ArtworkPage extends Component {
   };
 
   getVipsList() {
-    return this.props.vipDonors.map(vip => {
+    return this.props.context.vipDonors.map(vip => {
       return {
-        key: vip.donorid,
+        key: vip.id,
         text: vip.name,
-        value: vip.donorid,
+        value: vip.id,
         image: { avatar: true, src: vip.image }
       };
     });
@@ -119,7 +118,7 @@ class ArtworkPage extends Component {
   };
 
   getDescriptionItem(work) {
-    if (work.description === "") return null;
+    if (!work.description) return null;
     return (
       <List.Item key={`${work.description}${work.id}`}>
         {work.description}
@@ -159,4 +158,4 @@ class ArtworkPage extends Component {
   }
 }
 
-export default withRouter(ArtworkPage);
+export default withStoreContext(withRouter(ArtworkPage));

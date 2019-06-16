@@ -2,16 +2,28 @@
 
 // From third parties
 import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
 import { List, Divider, Image } from "semantic-ui-react";
 import _ from "lodash";
 
 // From this application
 import { selectWork } from "./selectors";
+import { withStoreContext } from "../withStoreContext";
 
 class ArtistPage extends Component {
+  state = { store: [] };
+  componentDidMount() {
+    const artistsProfiles = this.props.artistsProfiles;
+    const artWorks = this.props.artWorks;
+    const vipDonors = this.props.vipDonors;
+    const store = [artistsProfiles, artWorks, vipDonors];
+
+    this.setState = { store };
+  }
+
   // Retreives work for a particulr artists, renders as list
   getAllWorks(work) {
-    const works = selectWork("artistid", work.artistid);
+    const works = selectWork("artistid", work.artistid, this.props.context);
     return (
       <React.Fragment>
         <Divider horizontal>Works in this exhibit</Divider>
@@ -19,7 +31,7 @@ class ArtistPage extends Component {
           {works.map(work => {
             return (
               <List.Item key={work.id}>
-                <a href={`/work/${work.id}`}>{work.title}</a>
+                <Link to={`/work/${work.id}`}>{work.title}</Link>
               </List.Item>
             );
           })}
@@ -46,7 +58,7 @@ class ArtistPage extends Component {
             if (key !== "_id" || key !== "name" || key !== "programme") {
               return (
                 <List.Item key={`${key}_${value}`}>
-                  <a href={key}>{`${value} : ${key}`}</a>
+                  <Link to={key}>{`${value} : ${key}`}</Link>
                 </List.Item>
               );
             }
@@ -68,4 +80,4 @@ class ArtistPage extends Component {
   }
 }
 
-export default ArtistPage;
+export default withRouter(withStoreContext(ArtistPage));

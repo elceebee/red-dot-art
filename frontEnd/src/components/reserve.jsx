@@ -2,7 +2,8 @@
 
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { selectWork, selectDonor, selectArtistByWork } from "./selectors";
+import axios from "axios";
+
 import {
   Container,
   Grid,
@@ -12,6 +13,9 @@ import {
   Button,
   Confirm
 } from "semantic-ui-react";
+
+import { withStoreContext } from "../withStoreContext";
+import { selectWork, selectDonor, selectArtistByWork } from "./selectors";
 
 class Reserve extends Component {
   state = this.props.location.state;
@@ -23,8 +27,13 @@ class Reserve extends Component {
 
   show = () => this.setState({ open: true });
 
-  handleConfirm = () => {
-    // update database
+  handleConfirm = async () => {
+    const reservationObject = {
+      workId: this.state.workId,
+      donorId: this.state.donorId
+    };
+
+    await axios.post("http://10.233.1.169:5000/reservation", reservationObject);
     this.props.history.push("/catalogue");
   };
 
@@ -32,14 +41,6 @@ class Reserve extends Component {
     return (
       <React.Fragment>
         <Header as="h2">Confirm donor and work before proceeding</Header>
-        <Card>
-          <Image src={donor.image} wrapped ui={false} />
-          <Card.Header>{donor.name}</Card.Header>
-        </Card>
-        <Card>
-          <Image src={work.image} wrapped ui={false} />
-          <Card.Header>{`${work.title} by ${artist.name}`}</Card.Header>
-        </Card>
         <Button.Group size="large">
           <Button onClick={() => this.handleEdit()} type="button">
             Edit
@@ -54,17 +55,27 @@ class Reserve extends Component {
             content={`${donor.name} will be invoiced for ${work.price} `}
           />
         </Button.Group>
+        <Card>
+          <Image src={donor.image} wrapped ui={false} />
+          <Card.Header>{donor.name}</Card.Header>
+        </Card>
+        <Card>
+          <Image src={work.image} wrapped ui={false} />
+          <Card.Header>{`${work.title} by ${artist.name}`}</Card.Header>
+        </Card>
       </React.Fragment>
     );
   }
 
   render() {
+    const { context } = this.props;
     const { workId, donorId } = this.state;
-    let work = selectWork("id", workId);
+
+    let work = selectWork("id", workId, context);
     work = work[0];
-    let artist = selectArtistByWork("id", workId);
+    let artist = selectArtistByWork("id", workId, context);
     artist = artist[0];
-    let donor = selectDonor(donorId);
+    let donor = selectDonor(donorId, context);
     donor = donor[0];
 
     return (
@@ -77,4 +88,4 @@ class Reserve extends Component {
   }
 }
 
-export default withRouter(Reserve);
+export default withStoreContext(withRouter(Reserve));

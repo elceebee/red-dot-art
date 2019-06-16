@@ -1,5 +1,4 @@
 import React from "react";
-import { toast } from "react-toastify";
 import { statuses } from "./keywords";
 import { Icon, Button } from "semantic-ui-react";
 import _ from "lodash";
