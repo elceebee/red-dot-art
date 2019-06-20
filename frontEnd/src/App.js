@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import io from "socket.io-client";
 import _ from "lodash";
+import axios from "axios";
 
 // Context to be used in other components
 import { StoreProvider } from "./storeContext";
@@ -15,9 +16,7 @@ import Reserve from "./components/reserve";
 import Tabs from "./components/tabs";
 
 // CSS modules
-import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import axios from "axios";
 
 var socket = io.connect("http://10.233.1.169:5000/");
 
