@@ -2,12 +2,12 @@
 
 ## What this app does and why
 
-Red Dot Art is designed to assist with selling student art at VIP events.
-It is to be used by tour guides and artists, equipped with smart phones or small tablets, to match available art with the VIPs on the guest lists.
+Red Dot Art is designed to assist with selling student art at VIP events in advance of the degree show.
+It is to be used by tour guides and artists equipped with smart phones or tablets. They guides to match available artworks with the VIPs on the guest lists to be invoiced later.
 
-I used socketio to allow for real-time updating of reservation status, to ensure guides have up-to-date information.
+I used socketio to allow for real-time updating of reservation status to ensure guides have up-to-date information.
 
-I developed this app for a CS50 (harvardx) final project.
+I developed this app for a CS50 (harvardx) final project. The brief was simply to "build something of interest to you, that you solve an actual problem, that you impact your community". For more information about CS50, see <https://www.edx.org/course/cs50s-introduction-to-computer-science>
 
 ## Technologies
 
@@ -25,9 +25,13 @@ Semantic ui
 
 The data (artists, artworks, vips) is stored in the state of app.jsx and passed around to components using a Context wrapper, rather than passing props into each component.
 
+Using SocketIO for real-time updating of the interface was important in this context to ensure against multiple buyers of the same piece of art.
+
+The app looks best on a smart phone or tablet.
+
 ## How to see it work
 
-TODO: sample data file, which you can set up locally with mongodb
+TODO:
 
 ## Future development
 
