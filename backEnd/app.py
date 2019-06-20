@@ -1,5 +1,7 @@
 # This files handles requests to the backend of the application.
 # Emits changes to the front end via socket io.
+import os
+import time
 
 from flask_socketio import SocketIO, emit
 from pprint import pprint
@@ -16,7 +18,6 @@ socketio = SocketIO(app)
 client = MongoClient("mongodb://localhost:27017")
 db = client["red-dot-art"]
 
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 socketio = SocketIO(app)
 
 

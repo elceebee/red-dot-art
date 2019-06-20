@@ -11,18 +11,9 @@ import { selectWork } from "./selectors";
 import { withStoreContext } from "../withStoreContext";
 
 class ArtistPage extends Component {
-  state = { store: [] };
-  componentDidMount() {
-    const artistsProfiles = this.props.artistsProfiles;
-    const artWorks = this.props.artWorks;
-    const vipDonors = this.props.vipDonors;
-    const store = [artistsProfiles, artWorks, vipDonors];
-
-    this.setState = { store };
-  }
-
   // Retreives work for a particulr artists, renders as list
   getAllWorks(work) {
+    const { selectedWork } = this.props;
     const works = selectWork("artistid", work.artistid, this.props.context);
     return (
       <React.Fragment>
@@ -55,7 +46,12 @@ class ArtistPage extends Component {
         <Divider horizontal>Connect with this artist</Divider>
         <List>
           {_.map(artist, (key, value) => {
-            if (key !== "_id" || key !== "name" || key !== "programme") {
+            if (
+              value === "facebook" ||
+              value === "instagram" ||
+              value === "web" ||
+              value === "youtube"
+            ) {
               return (
                 <List.Item key={`${key}_${value}`}>
                   <Link to={key}>{`${value} : ${key}`}</Link>
