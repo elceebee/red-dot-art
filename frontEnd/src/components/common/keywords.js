@@ -6,7 +6,7 @@ export const statuses = {
 
 export const programmes = {
   _CAG: "Ceramics & Glass",
-  _JAM: "Jewellery  & Metal",
+  _JAM: "Jewellery & Metal",
   _PAINT: "Painting",
   _PRINT: "Print",
   _PHOTO: "Photography",
