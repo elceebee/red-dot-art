@@ -4,33 +4,39 @@
 
 Red Dot Art is designed to assist with the sale of student artwork at VIP events. Details about the artists, works, and vips are loaded before the event. VIPs indicate to tour guides equipped with smart phones which pieces they would like to reserve. The guides match available artworks with the VIPs on the guest lists to be invoiced later.
 
-I used socketio to allow for real-time updating of reservation status to ensure guides do no inadvertantly promise the same piece to more than one person.
+I used Socket.IO to allow for real-time updating of reservation status to ensure guides do no inadvertantly promise the same piece to more than one person.
 
-I used semantic ui to style the interface.
+I used Semantic UI to style the interface.
 
 I developed this app for a CS50 (harvardx) final project. The brief was simply that "you build something of interest to you, that you solve an actual problem, that you impact your community". For more information about CS50, see <https://www.edx.org/course/cs50s-introduction-to-computer-science>
 
 ## Technologies
 
 - React
+- React Router v4
 - JavaScript (ES6)
-- Python / pymongo
+- Python / PyMongo
 - MongoDB
 - Flask
-- Socketio
+- Socket.IO
 - Axios
 - Lodash
-- Semantic ui
+- Semantic UI
 
 ## Approach
 
 The data (artists, artworks, vips) is uploaded and stored in the state of app.jsx when the application starts, allowing for quick loading of images and data as the user navigates around. This is useful because there are a few spots in the gallaries where the wifi is not as great as it could be.
 
+I used React Router v4 for routing to different components (see <https://github.com/elceebee/red-dot-art/blob/67e7e09e49a67dcb4e81d3c84c3394dfecb1d263/frontEnd/src/App.js#L56)> in app.js.
+
 The state is passed around to components using a Context wrapper I chose this method rather than passing props into each component after reading this blog (<https://medium.com/shemseddine-on-code/react-context-api-and-higher-order-components-d81573688a1c>).
 
 Using SocketIO for real-time updating of the interface was important in this context to ensure against multiple buyers of the same piece of art.
 
-The app looks best on a smart phone or small tablet.
+- See here: <https://github.com/elceebee/red-dot-art/blob/67e7e09e49a67dcb4e81d3c84c3394dfecb1d263/backEnd/app.py#L70> where the changes is emitted from the backend.
+- And here <https://github.com/elceebee/red-dot-art/blob/67e7e09e49a67dcb4e81d3c84c3394dfecb1d263/frontEnd/src/App.js#L23> for where the socket is opned to listen for changes in reservation status.
+
+The app looks best on a smart phone or small tablet, but you can see where I used the responsive grid of Semantic UI here: <https://github.com/elceebee/red-dot-art/blob/67e7e09e49a67dcb4e81d3c84c3394dfecb1d263/frontEnd/src/components/ArtworkCards.jsx#L100>
 
 ## How to see it work
 
