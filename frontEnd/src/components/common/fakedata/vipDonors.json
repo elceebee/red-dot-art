@@ -1,0 +1,3 @@
+{"_id":{"$oid":"5cfd1d3e42604a27936639ec"},"name":"An actor","image":"https://intl.startrek.com/sites/default/files/styles/992x473/public/images/2019-01/chrislloyd2.jpg?itok=ONpZXmqK"}
+{"_id":{"$oid":"5cfd1d7c8866942793928d0d"},"name":"A Designer","image":"https://thumbs-prod.si-cdn.com/p2qi4avByZrRy5TmuTL7MRM-4ls=/800x600/filters:no_upscale()/https://public-media.si-cdn.com/filer/89/40/89402b5e-251f-453b-ad19-f41d810f9e7d/jony-ive-800x600px-main-photo-web-page-300-dpi-copy-wr.jpg"}
+{"_id":{"$oid":"5d0f773d75adf8bc26a20369"},"name":"Person Who Likes Art","image":"/images/catdonor2.jpg"}
